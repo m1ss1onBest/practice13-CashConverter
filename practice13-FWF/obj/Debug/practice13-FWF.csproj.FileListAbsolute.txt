@@ -1,0 +1,10 @@
+D:\mwp\cs\practice13-FWF\practice13-FWF\bin\Debug\practice13_FWF.exe.config
+D:\mwp\cs\practice13-FWF\practice13-FWF\bin\Debug\practice13_FWF.exe
+D:\mwp\cs\practice13-FWF\practice13-FWF\bin\Debug\practice13_FWF.pdb
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13-FWF.csproj.AssemblyReference.cache
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13_FWF.Properties.Resources.resources
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13-FWF.csproj.GenerateResource.cache
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13-FWF.csproj.CoreCompileInputs.cache
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13_FWF.exe
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13_FWF.pdb
+D:\mwp\cs\practice13-FWF\practice13-FWF\obj\Debug\practice13_FWF.Form1.resources
