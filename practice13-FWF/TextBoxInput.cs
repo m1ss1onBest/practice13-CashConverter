@@ -26,6 +26,10 @@ namespace practice13_FWF {
             if (e.KeyChar != (int)Keys.Enter) return InputMoney(tbx, e);
             action();
             return false;
+            
+            
+            
+            
         }
     }
 }

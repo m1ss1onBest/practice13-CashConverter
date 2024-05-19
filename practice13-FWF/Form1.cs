@@ -213,16 +213,16 @@ namespace practice13_FWF
         //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
         private void commitButton_Click(object sender, EventArgs e)
         {
+            float coefficient;
             switch (Currency)
             {
                 case SelectedMoney.Dollar:
-                    float coefficient = PriceBuy.Usd / PriceSell.Usd - 1;
+                    coefficient = PriceBuy.Usd / PriceSell.Usd - 1;
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
                         Bank.Dollar -= transaction / PriceBuy.Usd;
                         Bank.Uah += transaction;
-
                         Corruption += coefficient * transaction;
                     }
                     else
@@ -230,8 +230,25 @@ namespace practice13_FWF
                         float transaction = float.Parse(inputOther.Text);
                         Bank.Dollar += transaction * PriceBuy.Usd;
                         Bank.Uah -= transaction;
-                        
                         Corruption += coefficient * transaction * PriceBuy.Usd;
+                    }
+                    break;
+                
+                case SelectedMoney.Euro:
+                    coefficient = PriceBuy.Eur / PriceSell.Eur - 1;
+                    if (rbtBuyMode.Checked)
+                    {
+                        float transaction = float.Parse(inputUah.Text);
+                        Bank.Euro -= transaction / PriceBuy.Usd;
+                        Bank.Uah += transaction;
+                        Corruption += coefficient * transaction;
+                    }
+                    else
+                    {
+                        float transaction = float.Parse(inputOther.Text);
+                        Bank.Euro += transaction * PriceBuy.Eur;
+                        Bank.Uah -= transaction;
+                        Corruption += coefficient * transaction * PriceBuy.Eur;
                     }
                     break;
             }
