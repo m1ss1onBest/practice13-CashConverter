@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -53,6 +54,7 @@ namespace practice13_FWF
             Buy
         }
 
+        public static float Corruption = 0;
         private SelectedMoney Currency { set; get; } = SelectedMoney.None;
         private TransactionMode TransactionType { set; get; } = TransactionMode.None;
 
@@ -202,15 +204,38 @@ namespace practice13_FWF
 
         private void UpdateBank()
         {
-            outputUah.Text = $@"{Bank.Uah :F4}";
-            outputUsd.Text = $@"{Bank.Dollar :F4}";
-            outputEuro.Text = $@"{Bank.Euro :F4}";
+            outputUah.Text = $@"{Bank.Uah}";
+            outputUsd.Text = $@"{Bank.Dollar}";
+            outputEuro.Text = $@"{Bank.Euro}";
+            label8.Text = $@"Total: {Corruption}";
         }
 
-        //FUCK YEAH I'M FINALLY FINISHING THAT SHIT
+        //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
         private void commitButton_Click(object sender, EventArgs e)
         {
-            float transactionBuffer;
+            switch (Currency)
+            {
+                case SelectedMoney.Dollar:
+                    float coefficient = PriceBuy.Usd / PriceSell.Usd - 1;
+                    if (rbtBuyMode.Checked)
+                    {
+                        float transaction = float.Parse(inputUah.Text);
+                        Bank.Dollar -= transaction / PriceBuy.Usd;
+                        Bank.Uah += transaction;
+
+                        Corruption += coefficient * transaction;
+                    }
+                    else
+                    {
+                        float transaction = float.Parse(inputOther.Text);
+                        Bank.Dollar += transaction * PriceBuy.Usd;
+                        Bank.Uah -= transaction;
+                        
+                        Corruption += coefficient * transaction * PriceBuy.Usd;
+                    }
+                    break;
+            }
+            UpdateBank();
         }
     }
 }

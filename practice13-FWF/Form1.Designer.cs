@@ -36,8 +36,8 @@ namespace practice13_FWF
             this.rbtBuyMode = new System.Windows.Forms.RadioButton();
             this.rbtSellMode = new System.Windows.Forms.RadioButton();
             this.tbxSellPrice = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.inputUah = new System.Windows.Forms.TextBox();
+            this.inputOther = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -53,11 +53,7 @@ namespace practice13_FWF
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // commitButton
@@ -69,6 +65,7 @@ namespace practice13_FWF
             this.commitButton.TabIndex = 0;
             this.commitButton.Text = "Commit";
             this.commitButton.UseVisualStyleBackColor = true;
+            this.commitButton.Click += new System.EventHandler(this.commitButton_Click);
             // 
             // tbxBuyPrice
             // 
@@ -112,21 +109,21 @@ namespace practice13_FWF
             this.tbxSellPrice.TabIndex = 4;
             this.tbxSellPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxSellPrice_KeyPressed);
             // 
-            // textBox5
+            // inputUah
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox5.Location = new System.Drawing.Point(476, 145);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(234, 38);
-            this.textBox5.TabIndex = 5;
+            this.inputUah.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.inputUah.Location = new System.Drawing.Point(476, 145);
+            this.inputUah.Name = "inputUah";
+            this.inputUah.Size = new System.Drawing.Size(234, 38);
+            this.inputUah.TabIndex = 5;
             // 
-            // textBox4
+            // inputOther
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(11, 145);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(234, 38);
-            this.textBox4.TabIndex = 6;
+            this.inputOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.inputOther.Location = new System.Drawing.Point(11, 145);
+            this.inputOther.Name = "inputOther";
+            this.inputOther.Size = new System.Drawing.Size(234, 38);
+            this.inputOther.TabIndex = 6;
             // 
             // comboBox1
             // 
@@ -276,66 +273,22 @@ namespace practice13_FWF
             this.label8.Text = "Total: 0,0000 UAH";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // label14
             // 
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(252, 240);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(219, 38);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "0,000";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(260, 248);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(219, 38);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "0,000";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label11
-            // 
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(268, 256);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(219, 38);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "0,000";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(276, 264);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(219, 38);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "0,000";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(284, 272);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(219, 38);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "0,000";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(476, 99);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 38);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "UAH";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 519);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -351,8 +304,8 @@ namespace practice13_FWF
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.inputOther);
+            this.Controls.Add(this.inputUah);
             this.Controls.Add(this.tbxSellPrice);
             this.Controls.Add(this.rbtSellMode);
             this.Controls.Add(this.rbtBuyMode);
@@ -366,11 +319,7 @@ namespace practice13_FWF
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
 
         private System.Windows.Forms.Label label8;
 
@@ -394,8 +343,8 @@ namespace practice13_FWF
 
         private System.Windows.Forms.ComboBox comboBox1;
 
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox inputOther;
+        private System.Windows.Forms.TextBox inputUah;
 
         private System.Windows.Forms.RadioButton rbtBuyMode;
         private System.Windows.Forms.RadioButton rbtSellMode;
