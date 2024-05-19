@@ -17,16 +17,16 @@ namespace practice13_FWF
     {
         private static class Bank
         {
-            public static float Dollar { set; get; }
-            public static float Euro { set; get; }
-            public static float Uah { set; get; }
+            public static float Dollar { set; get; } = 0;
+            public static float Euro { set; get; } = 0;
+            public static float Uah { set; get; } = 0;
         }
 
         private static class Current
         {
-            public static float Dollar { set; get; }
-            public static float Euro { set; get; }
-            public static float Uah { set; get; }
+            public static float Dollar { set; get; } = 0;
+            public static float Euro { set; get; } = 0;
+            public static float Uah { set; get; } = 0;
         }
         
         private static class PriceBuy
@@ -171,21 +171,21 @@ namespace practice13_FWF
         //bank input
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxBuyPrice, e, () =>
+            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
             {
-                if (e.KeyChar != (int)Keys.Enter || tbxBuyPrice.Text.Length == 0) return;
-                Bank.Uah = float.Parse(tbxBuyPrice.Text);
-                tbxBuyPrice.Enabled = false;
+                if (e.KeyChar != (int)Keys.Enter || textBox1.Text.Length == 0) return;
+                Bank.Uah = float.Parse(textBox1.Text);
+                textBox1.Enabled = false;
                 UpdateBank();
             });
         }
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxSellPrice, e, () =>
+            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
             {
-                if (e.KeyChar != (int)Keys.Enter || tbxSellPrice.Text.Length == 0 ) return;
-                Bank.Dollar = float.Parse(tbxSellPrice.Text);
-                tbxSellPrice.Enabled = false;
+                if (e.KeyChar != (int)Keys.Enter || textBox2.Text.Length == 0) return;
+                Bank.Dollar = float.Parse(textBox2.Text);
+                textBox2.Enabled = false;
                 UpdateBank();
             });
         }
