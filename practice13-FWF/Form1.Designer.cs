@@ -117,6 +117,7 @@ namespace practice13_FWF
             this.inputUah.Name = "inputUah";
             this.inputUah.Size = new System.Drawing.Size(234, 38);
             this.inputUah.TabIndex = 5;
+            this.inputUah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputUah_KeyPressed);
             // 
             // inputOther
             // 
@@ -125,6 +126,7 @@ namespace practice13_FWF
             this.inputOther.Name = "inputOther";
             this.inputOther.Size = new System.Drawing.Size(234, 38);
             this.inputOther.TabIndex = 6;
+            this.inputOther.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputOther_KeyPressed);
             // 
             // comboBox1
             // 
@@ -177,9 +179,9 @@ namespace practice13_FWF
             // outputUah
             // 
             this.outputUah.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outputUah.Location = new System.Drawing.Point(389, 336);
+            this.outputUah.Location = new System.Drawing.Point(348, 336);
             this.outputUah.Name = "outputUah";
-            this.outputUah.Size = new System.Drawing.Size(219, 38);
+            this.outputUah.Size = new System.Drawing.Size(260, 38);
             this.outputUah.TabIndex = 15;
             this.outputUah.Text = "0,0000";
             this.outputUah.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,9 +189,9 @@ namespace practice13_FWF
             // outputUsd
             // 
             this.outputUsd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outputUsd.Location = new System.Drawing.Point(389, 380);
+            this.outputUsd.Location = new System.Drawing.Point(353, 380);
             this.outputUsd.Name = "outputUsd";
-            this.outputUsd.Size = new System.Drawing.Size(219, 38);
+            this.outputUsd.Size = new System.Drawing.Size(255, 38);
             this.outputUsd.TabIndex = 16;
             this.outputUsd.Text = "0,0000";
             this.outputUsd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,9 +199,9 @@ namespace practice13_FWF
             // outputEuro
             // 
             this.outputEuro.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.outputEuro.Location = new System.Drawing.Point(389, 425);
+            this.outputEuro.Location = new System.Drawing.Point(353, 425);
             this.outputEuro.Name = "outputEuro";
-            this.outputEuro.Size = new System.Drawing.Size(219, 38);
+            this.outputEuro.Size = new System.Drawing.Size(255, 38);
             this.outputEuro.TabIndex = 17;
             this.outputEuro.Text = "0,0000";
             this.outputEuro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

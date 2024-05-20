@@ -29,19 +29,21 @@ namespace practice13_FWF
             public static float Euro { set; get; } = 0;
             public static float Uah { set; get; } = 0;
         }
-        
+
         private static class PriceBuy
         {
             public static float Usd { set; get; }
             public static float Eur { set; get; }
         }
+
         private static class PriceSell
         {
             public static float Usd { set; get; }
             public static float Eur { set; get; }
         }
 
-        public enum SelectedMoney {
+        public enum SelectedMoney
+        {
             None,
             Dollar,
             Euro,
@@ -127,10 +129,11 @@ namespace practice13_FWF
                         break;
                     default: throw new ArgumentOutOfRangeException();
                 }
+
                 tbxBuyPrice.Enabled = false;
             });
         }
-        
+
         //LogicLoad
         //Combobox
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,7 +144,7 @@ namespace practice13_FWF
                     tbxSellPrice.Text = $@"{PriceSell.Usd}";
                     tbxBuyPrice.Text = $@"{PriceBuy.Usd}";
                     Currency = SelectedMoney.Dollar;
-                    
+
                     tbxSellPrice.Enabled = PriceSell.Usd == 0;
                     tbxBuyPrice.Enabled = PriceBuy.Usd == 0;
                     break;
@@ -150,7 +153,7 @@ namespace practice13_FWF
                     tbxSellPrice.Text = $@"{PriceSell.Eur}";
                     tbxBuyPrice.Text = $@"{PriceBuy.Eur}";
                     Currency = SelectedMoney.Euro;
-                    
+
                     tbxSellPrice.Enabled = PriceSell.Eur == 0;
                     tbxBuyPrice.Enabled = PriceBuy.Eur == 0;
                     break;
@@ -164,6 +167,7 @@ namespace practice13_FWF
             label1.Text = @"←";
 
         }
+
         private void rbtSellMode_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = @"→";
@@ -181,6 +185,7 @@ namespace practice13_FWF
                 UpdateBank();
             });
         }
+
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
@@ -191,6 +196,7 @@ namespace practice13_FWF
                 UpdateBank();
             });
         }
+
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
@@ -220,7 +226,7 @@ namespace practice13_FWF
                     {
                         float transaction = float.Parse(inputUah.Text);
                         inputOther.Text = $@"{transaction / PriceBuy.Usd}";
-                        
+
                         Bank.Dollar -= transaction / PriceBuy.Usd;
                         if (Bank.Dollar < 0)
                         {
@@ -228,15 +234,16 @@ namespace practice13_FWF
                             Bank.Dollar += transaction / PriceBuy.Usd;
                             return;
                         }
+
                         Bank.Uah += transaction;
-                        Corruption += Math.Abs(transaction/PriceBuy.Usd * PriceSell.Usd - transaction);
+                        Corruption += Math.Abs(transaction / PriceBuy.Usd * PriceSell.Usd - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
                         inputUah.Text = $@"{transaction * PriceSell.Usd}";
                         Bank.Dollar += transaction;
-                        
+
                         Bank.Uah -= transaction * PriceSell.Usd;
                         if (Bank.Uah < 0)
                         {
@@ -244,16 +251,18 @@ namespace practice13_FWF
                             Bank.Uah += transaction * PriceSell.Usd;
                             return;
                         }
+
                         Corruption += transaction * PriceBuy.Usd - transaction * PriceSell.Usd;
                     }
+
                     break;
-                
+
                 case SelectedMoney.Euro:
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
                         inputOther.Text = $@"{transaction * PriceBuy.Eur}";
-                        
+
                         Bank.Euro -= transaction / PriceBuy.Eur;
                         if (Bank.Euro < 0)
                         {
@@ -261,15 +270,16 @@ namespace practice13_FWF
                             Bank.Euro += transaction / PriceBuy.Eur;
                             return;
                         }
+
                         Bank.Uah += transaction;
-                        Corruption +=  Math.Abs(transaction/PriceBuy.Eur * PriceSell.Eur - transaction);
+                        Corruption += Math.Abs(transaction / PriceBuy.Eur * PriceSell.Eur - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
                         inputUah.Text = $@"{transaction * PriceSell.Eur}";
                         Bank.Euro += transaction;
-                        
+
                         Bank.Uah -= transaction * PriceSell.Eur;
                         if (Bank.Uah < 0)
                         {
@@ -277,10 +287,13 @@ namespace practice13_FWF
                             Bank.Uah += transaction * PriceSell.Eur;
                             return;
                         }
+
                         Corruption += transaction * PriceBuy.Eur - transaction * PriceSell.Eur;
                     }
+
                     break;
             }
+
             UpdateBank();
         }
 
@@ -288,5 +301,12 @@ namespace practice13_FWF
         {
             MessageBox.Show($@"{Corruption} UAH was taken from the vault", @"WARNING");
         }
+
+        private void inputUah_KeyPressed(object sender, KeyPressEventArgs e) =>
+            e.Handled = TextBoxInput.InputMoney(inputUah, e);
+
+        private void inputOther_KeyPressed(object sender, KeyPressEventArgs e) =>
+        e.Handled = TextBoxInput.InputMoney(inputOther, e);
+        
     }
 }
