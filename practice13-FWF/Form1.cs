@@ -217,20 +217,19 @@ namespace practice13_FWF
             switch (Currency)
             {
                 case SelectedMoney.Dollar:
-                    coefficient = PriceBuy.Usd / PriceSell.Usd - 1;
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
                         Bank.Dollar -= transaction / PriceBuy.Usd;
                         Bank.Uah += transaction;
-                        Corruption += coefficient * transaction;
+                        Corruption += Math.Abs(transaction/PriceBuy.Usd * PriceSell.Usd - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
                         Bank.Dollar += transaction;
                         Bank.Uah -= transaction * PriceSell.Usd;
-                        Corruption += coefficient * transaction * PriceBuy.Usd;
+                        Corruption += transaction * PriceBuy.Usd - transaction * PriceSell.Usd;
                     }
                     break;
                 
@@ -241,14 +240,14 @@ namespace practice13_FWF
                         float transaction = float.Parse(inputUah.Text);
                         Bank.Euro -= transaction / PriceBuy.Eur;
                         Bank.Uah += transaction;
-                        Corruption += coefficient * transaction;
+                        Corruption += Math.Abs(transaction/PriceBuy.Eur * PriceSell.Eur - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
                         Bank.Euro += transaction;
-                        Bank.Uah -= transaction * PriceSell.Usd;
-                        Corruption += coefficient * transaction * PriceBuy.Eur;
+                        Bank.Uah -= transaction * PriceSell.Eur;
+                        Corruption += transaction * PriceBuy.Eur - transaction * PriceSell.Eur;
                     }
                     break;
             }
