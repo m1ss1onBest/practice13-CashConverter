@@ -54,6 +54,7 @@ namespace practice13_FWF
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // commitButton
@@ -283,11 +284,22 @@ namespace practice13_FWF
             this.label14.Text = "UAH";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(251, 197);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(219, 38);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "0,0000";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 519);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
@@ -318,6 +330,8 @@ namespace practice13_FWF
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label9;
 
         private System.Windows.Forms.Label label14;
 

@@ -207,7 +207,7 @@ namespace practice13_FWF
             outputUah.Text = $@"{Bank.Uah}";
             outputUsd.Text = $@"{Bank.Dollar}";
             outputEuro.Text = $@"{Bank.Euro}";
-            label8.Text = $@"Total: {Corruption}";
+            label8.Text = $@"Total: {Corruption} UAH";
         }
 
         //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
@@ -228,8 +228,8 @@ namespace practice13_FWF
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
-                        Bank.Dollar += transaction * PriceBuy.Usd;
-                        Bank.Uah -= transaction;
+                        Bank.Dollar += transaction;
+                        Bank.Uah -= transaction * PriceSell.Usd;
                         Corruption += coefficient * transaction * PriceBuy.Usd;
                     }
                     break;
@@ -239,15 +239,15 @@ namespace practice13_FWF
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
-                        Bank.Euro -= transaction / PriceBuy.Usd;
+                        Bank.Euro -= transaction / PriceBuy.Eur;
                         Bank.Uah += transaction;
                         Corruption += coefficient * transaction;
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
-                        Bank.Euro += transaction * PriceBuy.Eur;
-                        Bank.Uah -= transaction;
+                        Bank.Euro += transaction;
+                        Bank.Uah -= transaction * PriceSell.Usd;
                         Corruption += coefficient * transaction * PriceBuy.Eur;
                     }
                     break;
