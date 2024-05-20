@@ -55,6 +55,8 @@ namespace practice13_FWF
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // commitButton
@@ -85,7 +87,7 @@ namespace practice13_FWF
             this.rbtBuyMode.Size = new System.Drawing.Size(233, 38);
             this.rbtBuyMode.TabIndex = 2;
             this.rbtBuyMode.TabStop = true;
-            this.rbtBuyMode.Text = "Buy";
+            this.rbtBuyMode.Text = "Sell";
             this.rbtBuyMode.UseVisualStyleBackColor = true;
             this.rbtBuyMode.CheckedChanged += new System.EventHandler(this.rbtBuyMode_CheckedChanged);
             // 
@@ -97,7 +99,7 @@ namespace practice13_FWF
             this.rbtSellMode.Size = new System.Drawing.Size(233, 38);
             this.rbtSellMode.TabIndex = 3;
             this.rbtSellMode.TabStop = true;
-            this.rbtSellMode.Text = "Sell";
+            this.rbtSellMode.Text = "Buy";
             this.rbtSellMode.UseVisualStyleBackColor = true;
             this.rbtSellMode.CheckedChanged += new System.EventHandler(this.rbtSellMode_CheckedChanged);
             // 
@@ -297,11 +299,33 @@ namespace practice13_FWF
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(12, 296);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(234, 38);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Reinforcement";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(477, 298);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(233, 38);
+            this.label10.TabIndex = 33;
+            this.label10.Text = "Bank";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 519);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label8);
@@ -333,6 +357,9 @@ namespace practice13_FWF
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
 
         private System.Windows.Forms.Button button1;
 

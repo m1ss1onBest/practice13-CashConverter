@@ -210,10 +210,10 @@ namespace practice13_FWF
 
         private void UpdateBank()
         {
-            outputUah.Text = $@"{Bank.Uah}";
-            outputUsd.Text = $@"{Bank.Dollar}";
-            outputEuro.Text = $@"{Bank.Euro}";
-            label8.Text = $@"Total: {Corruption} UAH";
+            outputUah.Text = $@"{Bank.Uah :F4}";
+            outputUsd.Text = $@"{Bank.Dollar :F4}";
+            outputEuro.Text = $@"{Bank.Euro :F4}";
+            label8.Text = $@"Total: {Corruption :F4} UAH";
         }
 
         //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
@@ -225,7 +225,7 @@ namespace practice13_FWF
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
-                        inputOther.Text = $@"{transaction / PriceBuy.Usd}";
+                        inputOther.Text = $@"{Math.Round(transaction / PriceBuy.Usd, 4)}";
 
                         Bank.Dollar -= transaction / PriceBuy.Usd;
                         if (Bank.Dollar < 0)
@@ -241,7 +241,7 @@ namespace practice13_FWF
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
-                        inputUah.Text = $@"{transaction * PriceSell.Usd}";
+                        inputUah.Text = $@"{Math.Round(transaction * PriceSell.Usd, 4)}";
                         Bank.Dollar += transaction;
 
                         Bank.Uah -= transaction * PriceSell.Usd;
@@ -261,7 +261,7 @@ namespace practice13_FWF
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
-                        inputOther.Text = $@"{transaction * PriceBuy.Eur}";
+                        inputOther.Text = $@"{Math.Round(transaction * PriceBuy.Eur, 4)}";
 
                         Bank.Euro -= transaction / PriceBuy.Eur;
                         if (Bank.Euro < 0)
@@ -277,7 +277,7 @@ namespace practice13_FWF
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
-                        inputUah.Text = $@"{transaction * PriceSell.Eur}";
+                        inputUah.Text = $@"{Math.Round(transaction * PriceSell.Eur)}";
                         Bank.Euro += transaction;
 
                         Bank.Uah -= transaction * PriceSell.Eur;
