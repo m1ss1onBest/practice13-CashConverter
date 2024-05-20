@@ -61,12 +61,12 @@ namespace practice13_FWF
         public Form1()
         {
             InitializeComponent();
-            label1.Text = @"↔";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = @"CashConverter";
+            label1.Text = @"↔";
         }
 
         //KeyPressLoad
@@ -213,45 +213,80 @@ namespace practice13_FWF
         //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
         private void commitButton_Click(object sender, EventArgs e)
         {
-            float coefficient;
             switch (Currency)
             {
                 case SelectedMoney.Dollar:
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
+                        inputOther.Text = $@"{transaction / PriceBuy.Usd}";
+                        
                         Bank.Dollar -= transaction / PriceBuy.Usd;
+                        if (Bank.Dollar < 0)
+                        {
+                            MessageBox.Show(@"NOT ENOUGH MONEY");
+                            Bank.Dollar += transaction / PriceBuy.Usd;
+                            return;
+                        }
                         Bank.Uah += transaction;
                         Corruption += Math.Abs(transaction/PriceBuy.Usd * PriceSell.Usd - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
+                        inputUah.Text = $@"{transaction * PriceSell.Usd}";
                         Bank.Dollar += transaction;
+                        
                         Bank.Uah -= transaction * PriceSell.Usd;
+                        if (Bank.Uah < 0)
+                        {
+                            MessageBox.Show(@"NOT ENOUGH MONEY");
+                            Bank.Uah += transaction * PriceSell.Usd;
+                            return;
+                        }
                         Corruption += transaction * PriceBuy.Usd - transaction * PriceSell.Usd;
                     }
                     break;
                 
                 case SelectedMoney.Euro:
-                    coefficient = PriceBuy.Eur / PriceSell.Eur - 1;
                     if (rbtBuyMode.Checked)
                     {
                         float transaction = float.Parse(inputUah.Text);
+                        inputOther.Text = $@"{transaction * PriceBuy.Eur}";
+                        
                         Bank.Euro -= transaction / PriceBuy.Eur;
+                        if (Bank.Euro < 0)
+                        {
+                            MessageBox.Show(@"NOT ENOUGH MONEY");
+                            Bank.Euro += transaction / PriceBuy.Eur;
+                            return;
+                        }
                         Bank.Uah += transaction;
-                        Corruption += Math.Abs(transaction/PriceBuy.Eur * PriceSell.Eur - transaction);
+                        Corruption +=  Math.Abs(transaction/PriceBuy.Eur * PriceSell.Eur - transaction);
                     }
                     else
                     {
                         float transaction = float.Parse(inputOther.Text);
+                        inputUah.Text = $@"{transaction * PriceSell.Eur}";
                         Bank.Euro += transaction;
+                        
                         Bank.Uah -= transaction * PriceSell.Eur;
+                        if (Bank.Uah < 0)
+                        {
+                            MessageBox.Show(@"NOT ENOUGH MONEY");
+                            Bank.Uah += transaction * PriceSell.Eur;
+                            return;
+                        }
                         Corruption += transaction * PriceBuy.Eur - transaction * PriceSell.Eur;
                     }
                     break;
             }
             UpdateBank();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($@"{Corruption} UAH was taken from the vault", @"WARNING");
         }
     }
 }
