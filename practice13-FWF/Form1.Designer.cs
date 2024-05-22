@@ -87,8 +87,8 @@ namespace practice13_FWF
             this.rbtBuyMode.Size = new System.Drawing.Size(233, 38);
             this.rbtBuyMode.TabIndex = 2;
             this.rbtBuyMode.TabStop = true;
-            this.rbtBuyMode.Text = "Sell";
-            this.rbtBuyMode.UseVisualStyleBackColor = true;
+            this.rbtBuyMode.Text = "sell";
+            this.rbtBuyMode.UseVisualStyleBackColor = false;
             this.rbtBuyMode.CheckedChanged += new System.EventHandler(this.rbtBuyMode_CheckedChanged);
             // 
             // rbtSellMode
@@ -99,7 +99,7 @@ namespace practice13_FWF
             this.rbtSellMode.Size = new System.Drawing.Size(233, 38);
             this.rbtSellMode.TabIndex = 3;
             this.rbtSellMode.TabStop = true;
-            this.rbtSellMode.Text = "Buy";
+            this.rbtSellMode.Text = "buy";
             this.rbtSellMode.UseVisualStyleBackColor = true;
             this.rbtSellMode.CheckedChanged += new System.EventHandler(this.rbtSellMode_CheckedChanged);
             // 
@@ -128,6 +128,7 @@ namespace practice13_FWF
             this.inputOther.Name = "inputOther";
             this.inputOther.Size = new System.Drawing.Size(234, 38);
             this.inputOther.TabIndex = 6;
+            this.inputOther.TextChanged += new System.EventHandler(this.inputOther_TextChanged);
             this.inputOther.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputOther_KeyPressed);
             // 
             // comboBox1
@@ -175,7 +176,7 @@ namespace practice13_FWF
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(219, 68);
             this.label1.TabIndex = 14;
-            this.label1.Text = "label1";
+            this.label1.Text = "-";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // outputUah

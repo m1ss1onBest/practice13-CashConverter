@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ReSharper disable RedundantUsingDirective
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,77 +10,48 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace practice13_FWF
-// pls help
-// nobody asked me if I wanna use Win forms
-// :sob:
-{
-    public partial class Form1 : Form
-    {
-        private static class Bank
-        {
-            public static float Dollar { set; get; } = 0;
-            public static float Euro { set; get; } = 0;
-            public static float Uah { set; get; } = 0;
+namespace practice13_FWF {
+    public partial class Form1 : Form {
+        //region variables
+        private static class Bank {
+            public static float Dollar { set; get; }
+            public static float Euro { set; get; }
+            public static float Uah { set; get; }
         }
 
-        private static class Current
-        {
-            public static float Dollar { set; get; } = 0;
-            public static float Euro { set; get; } = 0;
-            public static float Uah { set; get; } = 0;
-        }
-
-        private static class PriceBuy
-        {
+        private static class PriceBuy {
             public static float Usd { set; get; }
             public static float Eur { set; get; }
         }
 
-        private static class PriceSell
-        {
+        private static class PriceSell {
             public static float Usd { set; get; }
-            public static float Eur { set; get; }
+            public static float Eur { set; get; } 
         }
 
-        public enum SelectedMoney
-        {
-            None,
-            Dollar,
-            Euro,
-        }
-
-        public enum TransactionMode
-        {
-            None,
-            Sell,
-            Buy
-        }
-
-        public static float Corruption = 0;
+        public enum SelectedMoney { None, Dollar, Euro, }
         private SelectedMoney Currency { set; get; } = SelectedMoney.None;
-        private TransactionMode TransactionType { set; get; } = TransactionMode.None;
-
+        private static float Margin { set; get; }
+        //endregion variables
+        
+        //region microsoft shit
         public Form1()
         {
             InitializeComponent();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = @"CashConverter";
             label1.Text = @"↔";
         }
+        //endregion microsoft shit
 
-        //KeyPressLoad
-        //SellPrice
-        private void tbxSellPrice_KeyPressed(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxSellPrice, e, () =>
-            {
+        //region crutches💀
+        private void tbxSellPrice_KeyPressed(object sender, KeyPressEventArgs e) {
+            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxSellPrice, e, () => {
                 if (e.KeyChar != (int)Keys.Enter || tbxSellPrice.Text.Length == 0) return;
-                if (Currency == SelectedMoney.None)
-                {
+                if (Currency == SelectedMoney.None) {
                     MessageBox.Show(@"CHOOSE CORRECT CURRENCY", @"YOU CAN'T",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -88,8 +60,7 @@ namespace practice13_FWF
 
                 var price = float.Parse(tbxSellPrice.Text);
                 if (!(price > 0)) return;
-                switch (Currency)
-                {
+                switch (Currency) {
                     case SelectedMoney.Dollar:
                         PriceSell.Usd = price;
                         break;
@@ -100,17 +71,13 @@ namespace practice13_FWF
                 }
 
                 tbxSellPrice.Enabled = false;
-            });
+            }) | Currency == SelectedMoney.None;
         }
-
-        //BuyPrice
-        private void tbxBuyPrice_KeyPressed(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxBuyPrice, e, () =>
-            {
+        
+        private void tbxBuyPrice_KeyPressed(object sender, KeyPressEventArgs e) {
+            e.Handled = TextBoxInput.ButtonLessInputMoney(tbxBuyPrice, e, () => {
                 if (e.KeyChar != (int)Keys.Enter || tbxBuyPrice.Text.Length == 0) return;
-                if (Currency == SelectedMoney.None)
-                {
+                if (Currency == SelectedMoney.None) {
                     MessageBox.Show(@"CHOOSE CORRECT CURRENCY", @"YOU CAN'T",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -119,8 +86,7 @@ namespace practice13_FWF
 
                 var price = float.Parse(tbxBuyPrice.Text);
                 if (!(price > 0)) return;
-                switch (Currency)
-                {
+                switch (Currency) {
                     case SelectedMoney.Dollar:
                         PriceBuy.Usd = price;
                         break;
@@ -129,17 +95,12 @@ namespace practice13_FWF
                         break;
                     default: throw new ArgumentOutOfRangeException();
                 }
-
                 tbxBuyPrice.Enabled = false;
-            });
+            }) | Currency == SelectedMoney.None;
         }
-
-        //LogicLoad
-        //Combobox
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (comboBox1.Text)
-            {
+        
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            switch (comboBox1.Text) {
                 case "$ USD":
                     tbxSellPrice.Text = $@"{PriceSell.Usd}";
                     tbxBuyPrice.Text = $@"{PriceBuy.Usd}";
@@ -160,25 +121,19 @@ namespace practice13_FWF
             }
         }
 
-        //Transaction mode selection
-        private void rbtBuyMode_CheckedChanged(object sender, EventArgs e)
-        {
-            TransactionType = TransactionMode.Buy;
+        private void rbtBuyMode_CheckedChanged(object sender, EventArgs e) {
             label1.Text = @"←";
-
+            TransactionPreview();
         }
 
-        private void rbtSellMode_CheckedChanged(object sender, EventArgs e)
-        {
+        private void rbtSellMode_CheckedChanged(object sender, EventArgs e) {
             label1.Text = @"→";
-            TransactionType = TransactionMode.Sell;
+            TransactionPreview();
         }
 
         //bank input
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
-            {
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () => {
                 if (e.KeyChar != (int)Keys.Enter || textBox1.Text.Length == 0) return;
                 Bank.Uah = float.Parse(textBox1.Text);
                 textBox1.Enabled = false;
@@ -186,21 +141,17 @@ namespace practice13_FWF
             });
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
-            {
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () => {
                 if (e.KeyChar != (int)Keys.Enter || textBox2.Text.Length == 0) return;
                 Bank.Dollar = float.Parse(textBox2.Text);
                 textBox2.Enabled = false;
                 UpdateBank();
             });
         }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () =>
-            {
+        
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = TextBoxInput.ButtonLessInputMoney(textBox3, e, () => {
                 if (e.KeyChar != (int)Keys.Enter || textBox3.Text.Length == 0) return;
                 Bank.Euro = float.Parse(textBox3.Text);
                 textBox3.Enabled = false;
@@ -208,105 +159,68 @@ namespace practice13_FWF
             });
         }
 
-        private void UpdateBank()
-        {
+        private void UpdateBank() {
             outputUah.Text = $@"{Bank.Uah :F4}";
             outputUsd.Text = $@"{Bank.Dollar :F4}";
             outputEuro.Text = $@"{Bank.Euro :F4}";
-            label8.Text = $@"Total: {Corruption :F4} UAH";
+            label8.Text = $@"Total: {Margin :F4} UAH";
         }
-
-        //F*CK YEAH I'M FINALLY FINISHING THAT SHIT
-        private void commitButton_Click(object sender, EventArgs e)
-        {
-            switch (Currency)
-            {
+        
+        private void commitButton_Click(object sender, EventArgs e) {
+            if (!float.TryParse(inputOther.Text, out var transaction) | Currency == SelectedMoney.None) return;
+            var i = rbtBuyMode.Checked ? 1 : -1;
+            
+            switch (Currency) {
                 case SelectedMoney.Dollar:
-                    if (rbtBuyMode.Checked)
-                    {
-                        float transaction = float.Parse(inputUah.Text);
-                        inputOther.Text = $@"{Math.Round(transaction / PriceBuy.Usd, 4)}";
-
-                        Bank.Dollar -= transaction / PriceBuy.Usd;
-                        if (Bank.Dollar < 0)
-                        {
-                            MessageBox.Show(@"NOT ENOUGH MONEY");
-                            Bank.Dollar += transaction / PriceBuy.Usd;
-                            return;
-                        }
-
-                        Bank.Uah += transaction;
-                        Corruption += Math.Abs(transaction / PriceBuy.Usd * PriceSell.Usd - transaction);
-                    }
-                    else
-                    {
-                        float transaction = float.Parse(inputOther.Text);
-                        inputUah.Text = $@"{Math.Round(transaction * PriceSell.Usd, 4)}";
-                        Bank.Dollar += transaction;
-
-                        Bank.Uah -= transaction * PriceSell.Usd;
-                        if (Bank.Uah < 0)
-                        {
-                            MessageBox.Show(@"NOT ENOUGH MONEY");
-                            Bank.Uah += transaction * PriceSell.Usd;
-                            return;
-                        }
-
-                        Corruption += transaction * PriceBuy.Usd - transaction * PriceSell.Usd;
-                    }
-
+                    Margin += transaction * (PriceBuy.Usd - PriceSell.Usd);
+                    Bank.Dollar -= transaction * i;
+                    transaction *= i == 1 ? PriceBuy.Usd : PriceSell.Usd; 
+                    Bank.Uah += transaction * i;
                     break;
-
+                
                 case SelectedMoney.Euro:
-                    if (rbtBuyMode.Checked)
-                    {
-                        float transaction = float.Parse(inputUah.Text);
-                        inputOther.Text = $@"{Math.Round(transaction * PriceBuy.Eur, 4)}";
-
-                        Bank.Euro -= transaction / PriceBuy.Eur;
-                        if (Bank.Euro < 0)
-                        {
-                            MessageBox.Show(@"NOT ENOUGH MONEY");
-                            Bank.Euro += transaction / PriceBuy.Eur;
-                            return;
-                        }
-
-                        Bank.Uah += transaction;
-                        Corruption += Math.Abs(transaction / PriceBuy.Eur * PriceSell.Eur - transaction);
-                    }
-                    else
-                    {
-                        float transaction = float.Parse(inputOther.Text);
-                        inputUah.Text = $@"{Math.Round(transaction * PriceSell.Eur)}";
-                        Bank.Euro += transaction;
-
-                        Bank.Uah -= transaction * PriceSell.Eur;
-                        if (Bank.Uah < 0)
-                        {
-                            MessageBox.Show(@"NOT ENOUGH MONEY");
-                            Bank.Uah += transaction * PriceSell.Eur;
-                            return;
-                        }
-
-                        Corruption += transaction * PriceBuy.Eur - transaction * PriceSell.Eur;
-                    }
-
+                    Margin += transaction * (PriceBuy.Eur - PriceSell.Eur);
+                    Bank.Euro -= transaction * i;
+                    transaction *= i == 1 ? PriceBuy.Eur : PriceSell.Eur; 
+                    Bank.Uah += transaction * i;
                     break;
+                case SelectedMoney.None: 
+                default:
+                    return;
             }
-
             UpdateBank();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show($@"{Corruption} UAH was taken from the vault", @"WARNING");
+        private void button1_Click(object sender, EventArgs e) {
+            MessageBox.Show($@"{Margin} UAH was taken from the vault", @"WARNING");
         }
 
-        private void inputUah_KeyPressed(object sender, KeyPressEventArgs e) =>
-            e.Handled = TextBoxInput.InputMoney(inputUah, e);
-
-        private void inputOther_KeyPressed(object sender, KeyPressEventArgs e) =>
-        e.Handled = TextBoxInput.InputMoney(inputOther, e);
+        private void inputUah_KeyPressed(object sender, KeyPressEventArgs e) => e.Handled = true;
+        private void inputOther_KeyPressed(object sender, KeyPressEventArgs e) => 
+            e.Handled = TextBoxInput.InputMoney(inputOther, e) | Currency == SelectedMoney.None;
+        private void inputOther_TextChanged(object sender, EventArgs e) => TransactionPreview();
         
+        private void TransactionPreview() { 
+            if (!float.TryParse(inputOther.Text, out var val)) return;
+            switch (Currency) {
+                case SelectedMoney.Dollar when rbtBuyMode.Checked:
+                    val *= PriceBuy.Usd; 
+                    break;
+                case SelectedMoney.Dollar:
+                    val *= PriceSell.Usd;
+                    break;
+                case SelectedMoney.Euro when rbtBuyMode.Checked:
+                    val *= PriceBuy.Eur;
+                    break;
+                case SelectedMoney.Euro:
+                    val *= PriceSell.Eur;
+                    break;
+                case SelectedMoney.None:
+                default:
+                    return;
+            }
+            inputUah.Text = $@"{val}"; 
+        } 
     }
+    //endregion crutches💀
 }
