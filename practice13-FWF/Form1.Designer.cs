@@ -54,9 +54,10 @@ namespace practice13_FWF
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.incasation = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.incasationMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // commitButton
@@ -73,7 +74,7 @@ namespace practice13_FWF
             // tbxBuyPrice
             // 
             this.tbxBuyPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxBuyPrice.Location = new System.Drawing.Point(11, 56);
+            this.tbxBuyPrice.Location = new System.Drawing.Point(11, 57);
             this.tbxBuyPrice.Name = "tbxBuyPrice";
             this.tbxBuyPrice.Size = new System.Drawing.Size(234, 38);
             this.tbxBuyPrice.TabIndex = 1;
@@ -82,7 +83,7 @@ namespace practice13_FWF
             // rbtBuyMode
             // 
             this.rbtBuyMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rbtBuyMode.Location = new System.Drawing.Point(12, 12);
+            this.rbtBuyMode.Location = new System.Drawing.Point(13, 101);
             this.rbtBuyMode.Name = "rbtBuyMode";
             this.rbtBuyMode.Size = new System.Drawing.Size(233, 38);
             this.rbtBuyMode.TabIndex = 2;
@@ -94,7 +95,7 @@ namespace practice13_FWF
             // rbtSellMode
             // 
             this.rbtSellMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rbtSellMode.Location = new System.Drawing.Point(477, 12);
+            this.rbtSellMode.Location = new System.Drawing.Point(476, 101);
             this.rbtSellMode.Name = "rbtSellMode";
             this.rbtSellMode.Size = new System.Drawing.Size(233, 38);
             this.rbtSellMode.TabIndex = 3;
@@ -106,7 +107,7 @@ namespace practice13_FWF
             // tbxSellPrice
             // 
             this.tbxSellPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxSellPrice.Location = new System.Drawing.Point(476, 56);
+            this.tbxSellPrice.Location = new System.Drawing.Point(477, 57);
             this.tbxSellPrice.Name = "tbxSellPrice";
             this.tbxSellPrice.Size = new System.Drawing.Size(234, 38);
             this.tbxSellPrice.TabIndex = 4;
@@ -115,7 +116,7 @@ namespace practice13_FWF
             // inputUah
             // 
             this.inputUah.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputUah.Location = new System.Drawing.Point(476, 145);
+            this.inputUah.Location = new System.Drawing.Point(476, 143);
             this.inputUah.Name = "inputUah";
             this.inputUah.Size = new System.Drawing.Size(234, 38);
             this.inputUah.TabIndex = 5;
@@ -124,7 +125,7 @@ namespace practice13_FWF
             // inputOther
             // 
             this.inputOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputOther.Location = new System.Drawing.Point(11, 145);
+            this.inputOther.Location = new System.Drawing.Point(11, 143);
             this.inputOther.Name = "inputOther";
             this.inputOther.Size = new System.Drawing.Size(234, 38);
             this.inputOther.TabIndex = 6;
@@ -136,7 +137,7 @@ namespace practice13_FWF
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] { "$ USD", "€ EUR" });
-            this.comboBox1.Location = new System.Drawing.Point(11, 100);
+            this.comboBox1.Location = new System.Drawing.Point(12, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(234, 39);
             this.comboBox1.TabIndex = 10;
@@ -172,7 +173,7 @@ namespace practice13_FWF
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(251, 129);
+            this.label1.Location = new System.Drawing.Point(251, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(219, 68);
             this.label1.TabIndex = 14;
@@ -282,23 +283,23 @@ namespace practice13_FWF
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(476, 99);
+            this.label14.Location = new System.Drawing.Point(614, 9);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(96, 38);
             this.label14.TabIndex = 30;
             this.label14.Text = "UAH";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // button1
+            // incasation
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(251, 469);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 38);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "End";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.incasation.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.incasation.Location = new System.Drawing.Point(251, 469);
+            this.incasation.Name = "incasation";
+            this.incasation.Size = new System.Drawing.Size(121, 38);
+            this.incasation.TabIndex = 31;
+            this.incasation.Text = "Incas";
+            this.incasation.UseVisualStyleBackColor = true;
+            this.incasation.Click += new System.EventHandler(this.button1_Click);
             // 
             // label9
             // 
@@ -320,14 +321,23 @@ namespace practice13_FWF
             this.label10.Text = "Bank";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // incasationMessage
+            // 
+            this.incasationMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.incasationMessage.Location = new System.Drawing.Point(12, 510);
+            this.incasationMessage.Name = "incasationMessage";
+            this.incasationMessage.Size = new System.Drawing.Size(698, 160);
+            this.incasationMessage.TabIndex = 34;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 519);
+            this.ClientSize = new System.Drawing.Size(722, 679);
+            this.Controls.Add(this.incasationMessage);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.incasation);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
@@ -359,10 +369,12 @@ namespace practice13_FWF
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.Label incasationMessage;
+
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button incasation;
 
         private System.Windows.Forms.Label label14;
 
